@@ -1,10 +1,14 @@
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 
 export default function CardUser() {
     return (
         <View style={styles.card}>
             <View>
-                <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFow3nU6ajG_8xpqPJWwXv1rHi3p_dT7O0sg&s'}}  style={styles.image2} />
+                <Image
+                    style={styles.avatar}
+                    sourcer={{ uri: "https://github.com/GabrielMeloIF.png"}}                
+                />
             </View>
             <View style={styles.cardtext}>
                 <Text style={styles.name}>Fulano de tal</Text>
@@ -20,6 +24,8 @@ const styles = StyleSheet.create({
         width: "80%",
         height: 150,
         borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2,
         marginTop: 20,
         alignItems: 'center',
         padding: 20,
@@ -31,7 +37,7 @@ const styles = StyleSheet.create({
     cardtext: {
         gap: 10,
     },
-    image2: {
+    avatar: {
         width: 80,
         height: 80,
         borderRadius: 50,
