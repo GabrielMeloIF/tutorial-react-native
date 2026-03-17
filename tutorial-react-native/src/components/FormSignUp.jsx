@@ -6,10 +6,26 @@ export default function FormSignUp() {
 
   const [nome, setNome] = useState("")
   const [email, setEmail] = useState("")
-  const [senha, setSenha] = useState("")
+  const [pass, setPass] = useState("")
+  const [avatar, setAvatar] = useState("")
 
-  const handleSubmit = () => {
-    console.log({nome, vemail, senha})
+  const handleSubmit = async () => {
+    console.log({nome, vemail, pass, avatar})
+    const result = await fetch("http://localhost:3000/user", {
+      method: "Post",
+      headers: { 
+        "Content-type": "application/json" 
+        },
+        body: JSON.stringify({name, email, pass, avatar})
+    })
+
+    if(response.ok) {
+      console.log("Usuário cadastrado com sucesso!")
+      const data = await response.json()
+      console.log(data)
+    } else {
+      console.log("Erro ao cadastrar usuário")
+    }
   }
 
   return (
@@ -32,8 +48,14 @@ export default function FormSignUp() {
             style={styles.inputs} 
             placeholder="Senha" 
             secureTextEntry
-            value={senha}
-            onChangeText={setSenha}
+            value={pass}
+            onChangeText={setPass}
+        />
+        <TextInput 
+            style={styles.inputs} 
+            placeholder="avatar" 
+            value={avatar}
+            onChangeText={setAvatar}
         />
         <Button title="Cadastrar" onPress={handleSubmit} />
       </View>
