@@ -1,57 +1,47 @@
-import { View, Text, StyleSheet } from "react-native";
-import { Image } from "expo-image";
+import { StyleSheet, View, Text } from "react-native"
+import { Image } from "expo-image"
 
-export default function CardUser() {
+export default function CardUser({avatar, name, email}){
+
     return (
-        <View style={styles.card}>
+        <View style={styles.container}>
+            <Image 
+                style={styles.avatar}
+                //source={require("../../assets/adaptive-icon.png")} // Imagem local, pasta assets
+                source={avatar} // Imagem externa, url
+            />
             <View>
-                <Image
-                    style={styles.avatar}
-                    sourcer={{ uri: "https://github.com/GabrielMeloIF.png"}}                
-                />
-            </View>
-            <View style={styles.cardtext}>
-                <Text style={styles.name}>Fulano de tal</Text>
-                <Text style={styles.email}>taldefulano@email.com</Text>
+                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.email}>{email}</Text>
             </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    card: {
-        backgroundColor: '#161616',
-        width: "80%",
-        height: 150,
-        borderRadius: 10,
-        borderColor: '#fff',
-        borderWidth: 2,
-        marginTop: 20,
-        alignItems: 'center',
-        padding: 20,
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 20,
-        boxShadow: '0px 6px 12px rgba(0,0,0,0.4)'
-    },
-    cardtext: {
+    container:{
+        borderWidth: 1,
+        borderColor: "#d1d1d1",
+        borderStyle: "solid",
+        borderRadius: 20,
+        flexDirection: "row",
+        padding: 16,
         gap: 10,
+        marginBottom: 20,
+        width: "80%",
     },
-    avatar: {
-        width: 80,
-        height: 80,
-        borderRadius: 50,
-        borderColor: '#000',
+    avatar:{
+        backgroundColor: "#d0eaf1",
+        borderRadius: 20, 
+        width: 40,
+        height: 40
     },
     name: {
-        color: '#fff',
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginTop: 10
+        fontSize: 16,
+        fontWeight: "700"
     },
     email: {
-        color: '#fff',
-        fontSize: 17,
-        marginTop: 5
+        fontSize: 14,
+        color: "#505050"
     }
 })

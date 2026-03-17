@@ -1,32 +1,30 @@
-import {View, Text, Image, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 
-export default function Header() {
+export default function Header(){
     return (
         <View style={styles.container}>
-            <Image source={require("../../assets/logo_contato.png")} style={styles.image} />
-            <Text style={styles.title}>CONTATOS</Text>
+            <FontAwesome style={styles.logo} name="users" size={26} color="#FFFFFF" />
+            <Text style={styles.logotipo}>Logo</Text>
         </View>
     )
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ // CSS in JS
     container: {
+        flexDirection: "row",
         backgroundColor: "#000000",
         width: "100%",
-        height: 80,
+        height: 46,
         marginBottom: 16,
-        flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        paddingHorizontal: 16
+        //justifyContent: "center",
     },
-    title: {
-        color: "#fff",
-        fontSize: 20,
-        fontWeight: "bold",
-        fontStyle: "italic"
+    logo:{
+        marginRight: 14
     },
-    image: {
-        width: 50,
-        height: 50,
-        borderRadius: 20
+    logotipo: {
+        color: "#FFF"
     }
 })
