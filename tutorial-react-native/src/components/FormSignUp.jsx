@@ -4,14 +4,14 @@ import { useState } from 'react'
 
 export default function FormSignUp() {
 
-  const [nome, setNome] = useState("")
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
   const [avatar, setAvatar] = useState("")
 
   const handleSubmit = async () => {
-    console.log({nome, vemail, pass, avatar})
-    const result = await fetch("http://localhost:3000/user", {
+    console.log({name, email, pass, avatar})
+    const response = await fetch("http://localhost:3000/user", {
       method: "Post",
       headers: { 
         "Content-type": "application/json" 
@@ -35,8 +35,8 @@ export default function FormSignUp() {
         <TextInput 
             style={styles.inputs} 
             placeholder="Nome"
-            value={nome}
-            onChangeText={setNome}
+            value={name}
+            onChangeText={setName}
         />
         <TextInput 
             style={styles.inputs} 
