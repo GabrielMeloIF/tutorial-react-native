@@ -1,8 +1,11 @@
 import { View, Text, StyleSheet, Button } from 'react-native'
 import { TextInput } from 'react-native-web'
 import { useState } from 'react'
+import { useRouter } from 'expo-router' 
 
 export default function FormSignUp() {
+
+  const router = useRouter()
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -58,6 +61,7 @@ export default function FormSignUp() {
             onChangeText={setAvatar}
         />
         <Button title="Cadastrar" onPress={handleSubmit} />
+        <Button title="Cancelar" onPress={() => router.push('/')} />
       </View>
     </View>
   )

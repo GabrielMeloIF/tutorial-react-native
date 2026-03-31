@@ -1,7 +1,22 @@
 import { StyleSheet, View, Text } from "react-native"
 import { Image } from "expo-image"
+import FontAwesome from "@expo/vector-icons/FontAwesome"
 
-export default function CardUser({avatar, name, email}){
+export default function CardUser({id, avatar, name, email, users, setUsers  }){
+
+    const handleDelete = async () => {
+        const response = await fetch(`http://localhost:3333/user/${id}`,{
+            method: "DELETE"
+        })
+        const data = await response?.json()
+        if (response.ok){
+            console.log("Usuário deletado com sucesso", data)
+            const newUsers = users.filter((user) => user.id !== id)
+            setUsers(newUsers)
+        } else {
+            console.log("Erro ao deletar usuário", data)
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -10,6 +25,10 @@ export default function CardUser({avatar, name, email}){
                 //source={require("../../assets/adaptive-icon.png")} // Imagem local, pasta assets
                 source={avatar} // Imagem externa, url
             />
+            <View style={styles.actions}>
+                <FontAwesome name="edit" size={18} color="black"/>
+                <FontAwesome style={styles.trash} name="trash-o" size={18} color="#db0000" onPress={handleDelete}/>
+            </View>
             <View>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.email}>{email}</Text>
@@ -43,5 +62,17 @@ const styles = StyleSheet.create({
     email: {
         fontSize: 14,
         color: "#505050"
+    },
+    actions: {
+        position: "absolute",
+        right: 14,
+        top: 14,
+        flexDirection: "row",
+        gap: 14,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    trash: {
+        marginBottom:2
     }
 })
